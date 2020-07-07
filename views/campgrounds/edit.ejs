@@ -1,0 +1,39 @@
+<!-- INCLUDE PARTIALS HEADER-->
+<%- include("../partials/header.ejs") %>
+
+<div class="container">
+    <div class="row">
+        <!-- BY row CLASS THE INPUT FIELDS WILL SHOW HORIZONTAL BY HORIZONTAL-->
+        <h1 style="text-align: center;"> EDIT THE <%= CampgroundDetail.name.toUpperCase() %> </h1>
+        <div style="width: 30%; margin: 30px auto;">
+            <form action="/campgrounds/<%= CampgroundDetail._id %>?_method=PUT" method="POST">
+                <!--_method=PUT WILL OVERRIDE THE POST REQUEST AND NOW THE REQUEST WILL BE PUT-->
+                <div class="form-group">
+                    <!-- form-group WILL JUST ADD THE SPACIING IN BETWEEN THE INPUTS-->
+                    <input class="form-control" type="text" name="campground[name]"
+                        value="<%= CampgroundDetail.name %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="campground[image]"
+                        value="<%= CampgroundDetail.image %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="campground[description]"
+                        value="<%= CampgroundDetail.description %>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="number" name="campground[price]" value="<%= CampgroundDetail.price %>">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!!</button>
+                    <!--btn-block WILL JUST CREATE-->
+                </div>
+            </form>
+            <!-- THIS FORM WILL CREATE A PUT REQUEST SO THE FORM WILL GOTO app.put("/campgrounds/:id",function(req,res){})-->
+            <a href="/campgrounds">BACK TO CAMPGROUND</a>
+        </div>
+    </div>
+</div>
+
+<!--INCLUDE PARTIALS FOOTER-->
+<%- include("../partials/footer.ejs") %>

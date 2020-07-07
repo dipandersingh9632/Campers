@@ -1,0 +1,27 @@
+<!-- INCLUDE PARTIALS HEADER-->
+<%- include("../partials/header.ejs") %>
+
+<div class="container">
+    <div class="row">
+        <!-- BY row CLASS THE INPUT FIELDS WILL SHOR HORIZONTAL BY HORIZONTAL-->
+        <h1 style="text-align: center;"> EDIT COMMENT </h1>
+        <div style="width: 30%; margin: 30px auto;">
+            <form action="/campgrounds/<%=campgroundID %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <!-- form-group WILL JUST ADD THE SPACIING IN BETWEEN THE INPUTS-->
+                    <input class="form-control" type="text" name="comment[text]"" value="<%= comment.text %>">
+                    <!-- IN PUT ROUTE WHEN WE NEED THE text WE CAN JUST WRITE req.body.comment SO IT IS A OBJECT THAT CONTAINS THE VALUE OF text-->
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!!</button>
+                    <!--btn-block WILL JUST CREATE-->
+                </div>
+            </form>
+
+            <a href="/campgrounds">BACK TO CAMPGROUND</a>
+        </div>
+    </div>
+</div>
+
+<!--INCLUDE PARTIALS FOOTER-->
+<%- include("../partials/footer.ejs") %>

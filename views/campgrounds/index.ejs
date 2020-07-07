@@ -1,0 +1,35 @@
+<!-- INCLUDE PARTIALS HEADER-->
+<%- include("../partials/header.ejs") %>
+
+<!--HEADER PART-->
+<div class="container">
+    <div class="jumbotron">
+        <h1>WELCOME TO CAMPERS</h1>
+        <p>Watch nature closely and Take back memories with you</p>
+        <p>
+            <!--LINK TO CREATE NEW CAMPGROUND-->
+            <a class="btn btn-primary btn-lg" href="/campgrounds/new">Add New Campground</a>
+        </p>
+    </div>
+ 
+    <!-- IMAGE GRID OF CAMPGROUNDS PAGE -->
+    <div class="row text-center">
+        <% campgroundsArray.forEach(function(item){ %>
+        <div class="col-md-4 col-sm-6">
+            <div class="thumbnail">
+                <img id="image-format" src=" <%= item.image %>">
+            </div>
+            <div class="caption">
+                <h4> <%= item.name.toUpperCase() %> </h4>
+            </div>
+            <p>
+                <!--BY item._id WE GET THE ID OF THE DATABASE SUPPOSE WE CLICK ON MANALI THEN IN DATABASE THE MANALI ID WE GET -->
+                <a href="/campgrounds/<%= item._id %>" class="btn btn-primary">More Info</a>
+            </p>
+        </div>
+        <% }) %>
+    </div>
+</div>
+
+<!--INCLUDE PARTIALS FOOTER-->
+<%- include("../partials/footer.ejs") %>

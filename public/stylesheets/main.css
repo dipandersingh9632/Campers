@@ -1,0 +1,15 @@
+.thumbnail img{
+    width: 100%;
+}
+.thumbnail{
+    padding: 0;
+}
+#image-format{
+    height: 350px;
+}
+#delete-form-campground{
+    display: inline;
+}
+#delete-form-comment{
+    display: inline;
+}

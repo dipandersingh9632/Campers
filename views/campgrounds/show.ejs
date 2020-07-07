@@ -1,0 +1,80 @@
+<%- include("../partials/header.ejs") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Campers</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= campgroundDetail.image %>">
+                <div class="caption">
+                    <h4 class="pull-right">Rs. 2000/night</h4>
+                    <a href="#"> <%= campgroundDetail.name.toUpperCase() %> </a>
+                    <hr>
+                    <p> <%= campgroundDetail.description %> </p>
+                    <p>
+                        <em>Submitted By <strong> <%= campgroundDetail.author.username.toUpperCase() %> </strong></em>
+                    </p>
+
+                    <% if(currentUser && campgroundDetail.author.id.equals(currentUser._id)) { %>
+                    <a class="btn btn-warning" href="/campgrounds/<%=campgroundDetail._id%>/edit">Edit Campground</a>
+                    <form id="delete-form-campground" action="/campgrounds/<%= campgroundDetail._id %>?_method=DELETE"
+                        method="POST">
+                        <!--THIS FORM WILL GENERATE THE DELETE REQUEST WHICH GOES TO THE router.delete()-->
+                        <button class="btn btn-danger">Delete Campground</button>
+                    </form>
+                    <% } %>
+
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-primary" href="/campgrounds/<%= campgroundDetail._id %>/comments/new">Add a
+                        Comment</a>
+                </div>
+                <% campgroundDetail.comments.forEach(function(item){ %>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong> <%= item.author.username %> </strong>
+                        <span class="pull-right">10 days ago</span>
+                        <p> <%= item.text %> </p>
+                        <% if( currentUser && item.author.id.equals(currentUser._id)) { %>
+                        <a class="btn btn-xs btn-warning"
+                            href="/campgrounds/<%= campgroundDetail._id %>/comments/<%= item._id %>/edit">
+
+                            Edit Comment
+                        </a>
+                        <form id="delete-form-comment"
+                            action="/campgrounds/<%= campgroundDetail._id %>/comments/<%= item._id %>?_method=DELETE"
+                            method="POST">
+                            <!--item._id REFERS TO THE PARTICULAR THIS COMMENT THAT WE ARE DELETING-->
+                            <button class="btn btn-xs btn-danger">Delete Comment</button>
+
+                        </form>
+                        <% } %>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include("../partials/footer.ejs") %>
